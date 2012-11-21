@@ -1,4 +1,4 @@
-package org.shmztko.recorder;
+package org.shmztko.accessor;
 
 import org.shmztko.model.User;
 import org.shmztko.request.Requester;

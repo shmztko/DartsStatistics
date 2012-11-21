@@ -1,4 +1,4 @@
-package org.shmztko.recorder;
+package org.shmztko.accessor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.shmztko.accessor.DartsLivePageAccessor;
 import org.shmztko.model.User;
 
 public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
@@ -19,7 +20,7 @@ public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 	public String getPlayDataPage() {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("C:\\Apps\\cygwin\\home\\ShimizuTakeo\\workspace\\DartsStatistics\\src\\test\\resources\\testhtml\\playdata.htm"))));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(".\\src\\test\\resources\\testhtml\\playdata.htm"))));
 			StringBuffer sb = new StringBuffer();
 			int c;
 			while ((c = br.read()) != -1) {
@@ -38,7 +39,6 @@ public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 				try { br.close();} catch(IOException e) {}
 			}
 		}
-//		return getPageContent("file:///C:/Apps/cygwin/home/ShimizuTakeo/workspace/DartsStatistics/src/test/resources/testhtml/playdata.htm");
 	}
 
 }
