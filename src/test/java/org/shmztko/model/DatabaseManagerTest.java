@@ -2,9 +2,6 @@ package org.shmztko.model;
 
 import java.sql.SQLException;
 
-import net.java.ao.EntityManager;
-
-import org.hsqldb.Server;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
