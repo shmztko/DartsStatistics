@@ -38,7 +38,7 @@ public class DartsLivePageAccessorTest {
 			user.setEmail("st0098@gmail.com");
 			user.save();
 		}
-		testTarget = new LocalDartsLiveStatAccessor(users[0]);
+		testTarget = new LocalDartsLiveStatAccessor(user);
 	}
 
 	@AfterClass
