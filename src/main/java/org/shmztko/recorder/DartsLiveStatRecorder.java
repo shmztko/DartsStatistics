@@ -11,13 +11,13 @@ import org.shmztko.model.User;
 import org.shmztko.utils.DateUtils;
 
 
-public class DartsLiveStatParser {
+public class DartsLiveStatRecorder {
 
 	private DartsLivePageAccessor accessor;
 
 	private User user;
 
-	public DartsLiveStatParser(User user) {
+	public DartsLiveStatRecorder(User user) {
 		this.user = user;
 		this.accessor = new DartsLivePageAccessor(user);
 	}
