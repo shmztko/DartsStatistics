@@ -8,6 +8,8 @@ import net.java.ao.DatabaseProvider;
 import net.java.ao.Entity;
 import net.java.ao.EntityManager;
 import net.java.ao.Query;
+import net.java.ao.schema.UnderscoreFieldNameConverter;
+import net.java.ao.schema.UnderscoreTableNameConverter;
 
 import org.shmztko.exceptions.ApplicationException;
 
@@ -24,6 +26,8 @@ public class DataBaseManager {
 				bundle.getString("db.username"),
 				bundle.getString("db.password")
 		));
+		manager.setFieldNameConverter(new UnderscoreFieldNameConverter(false));
+		manager.setTableNameConverter(new UnderscoreTableNameConverter(false));
 	}
 
 	public static EntityManager getEntityManager() {
