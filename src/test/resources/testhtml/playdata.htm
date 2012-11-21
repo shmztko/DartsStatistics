@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://card.dartslive.com/t/playdata.jsp -->
+<html class="no-js" lang="ja"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--====================== meta ======================-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.6">
+<meta name="robots" content="nofollow,noindex">
+<meta name="robots" content="noodp,noydir">
+<meta name="description" content="#">
+<!--====================== meta ======================-->
+<title>今日・昨日のプレイ結果</title>
+<link rel="apple-touch-icon-precomposed" href="http://card.dartslive.com/common/img/apple-touch-icon.png">
+<!-- stylesheet -->
+<link rel="stylesheet" type="text/css" href="./playdata_files/layout.css" media="all">
+<link rel="stylesheet" type="text/css" href="./playdata_files/layout_data.css" media="all">
+<link rel="stylesheet" type="text/css" href="./playdata_files/module_cardtop.css" media="all">
+<link rel="stylesheet" type="text/css" href="./playdata_files/module_play.css" media="all">
+<!-- javascript -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../common/js/css3-mediaqueries.js"></script>
+<script type="text/javascript" src="../common/js/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" async="" src="./playdata_files/ga.js"></script><script type="text/javascript" src="./playdata_files/jquery.js"></script>
+<script type="text/javascript" src="./playdata_files/common.js"></script>
+
+<!-- デフォルトの表示モード設定 -->
+<script>
+$(function(){
+	$('.day2 a').addClass('active');
+	$('.day1 a').removeClass('active');
+	$('#yesterday').show();
+	$('#today').hide();
+});
+</script>
+<style type="text/css" id="eow_sv_style">#sideView_wrapper {
+height: 400px;
+width: 500px;
+border-top: 1px solid #999 !important;
+border-left: 1px solid #999 !important;
+box-shadow: -1px 2px 2px rgba(0,0,0,0.3) !important;
+position: fixed !important;
+right: 0px !important;
+bottom: 0px !important;
+z-index: 2147483646;
+}
+#sideView_ifr {
+border: none !important;
+height: 100%;
+width: 100%;
+}#sideView_wrapper {
+position: fixed !important;
+left: auto !important;
+right: 0px !important;
+top: auto !important;
+bottom: 0px !important;
+}
+#sideView_wrapper .ui-resizable-nw {
+background-image: url("chrome-extension://oonalfdoahlmjaoloddjenihohbfodme/img/resize-grip-nw.png") !important;
+background-repeat: no-repeat !important;
+cursor: nw-resize !important;
+width: 20px !important;
+height: 20px !important;
+position: absolute !important;
+top: 0px !important;
+left: 0px !important;
+}sideView_icons
+{
+padding: 0 !important;
+margin: 0 !important;
+border-style: none !important;
+z-index: 1002 !important
+}#pun_ui {
+width: 24px;
+height: 24px;
+position: absolute !important;
+left: 7px !important;
+top: -2px !important;
+z-index: 1005;
+}
+#pun_ui[ison="true"] {
+background-image: url("chrome-extension://oonalfdoahlmjaoloddjenihohbfodme/img/pin_on.png") !important;
+}
+#pun_ui[ison="false"] {
+background-image: url("chrome-extension://oonalfdoahlmjaoloddjenihohbfodme/img/pin_off.png") !important;
+}#toggle_header {
+width: 24px;
+height: 24px;
+position: absolute !important;
+left: 33px !important;
+top: 0px !important;
+}
+#toggle_header[ison="true"] {
+background-image: url("chrome-extension://oonalfdoahlmjaoloddjenihohbfodme/img/openheader.png") !important;
+}
+#toggle_header[ison="false"] {
+background-image: url("chrome-extension://oonalfdoahlmjaoloddjenihohbfodme/img/hideheader.png") !important;
+z-index: 1005;
+}</style></head>
+<body id="pagetop">
+
+<div id="container">
+
+<div id="headerArea">
+
+<ul class="tab">
+<li id="tabTop_off"><a title="TOP" href="http://card.dartslive.com/t/top.jsp?i=559300205543375&n=2124119876"></a></li>
+<li id="tabImadoko_plus"><a title="imadoko" href="http://card.dartslive.com/t/imadoko.jsp"></a></li>
+<li id="tabPlay"><a title="playdata" href="./playdata_files/playdata.htm"></a></li>
+<li id="tabInfo_off"><a title="info" href="http://card.dartslive.com/t/information.jsp"></a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+	
+<p class="btnTwitter">
+	
+		<a title="twitter" href="http://card.dartslive.com/t/tweet.jsp"><span class="icon">twitter</span></a>
+	
+</p>
+
+</div><!-- /#headerArea -->
+
+<div id="dailyData">
+
+<div id="dayTab">
+<ul class="tabNav" id="daySelect">
+<li class="day1"><a href="http://card.dartslive.com/t/playdata.jsp#today" title="今日" class=""><span class="light">今日</span></a></li>
+<li class="day2"><a href="http://card.dartslive.com/t/playdata.jsp#yesterday" title="昨日" class="active"><span class="light">昨日</span></a></li>
+</ul>
+</div><!-- /#dayTab -->
+
+<!-- 今日のプレイデータ ここ -->
+<div class="tabContent" id="today" style="display: none;">
+	<h1 class="dayTitle">TODAY</h1>
+	<div class="bar"></div>
+
+<div class="imageThrow"></div>
+	<p class="notPlaying">
+	プレイデータがありません。</p>
+	<p class="comment">友達を誘ってダーツを投げよう</p>
+	<p class="btn toShopsearch"><a href="http://search.dartslive.jp/" target="_new">DARTSLIVE SEARCH</a></p>
+
+<!-- /#today --></div>
+<!-- 今日のプレイデータ ここまで -->
+
+
+<!-- 昨日のプレイデータ ここから -->
+<div class="tabContent" id="yesterday" style="display: block;">
+	<h1 class="dayTitle">YESTERDAY</h1>
+	<div class="bar"></div>
+
+<div class="listArea">
+		<h2>SHOP</h2>
+		<ul class="shopList">
+		<li class="shop">
+			<a href="http://search.dartslive.jp/shop/14400056">
+						<div class="homeshop">ｻﾝﾊﾟｰｸ ﾀﾞｰﾂ 本館</div>
+					</a>
+				</li>
+		</ul>
+
+		<h2>STATS</h2>
+		<table class="basic" id="score">
+		<tbody><tr class="title">
+		<th class="empty"></th>
+		<th class="score_01">01</th>
+		<th class="score_cri">CRICKET</th>
+		<th class="score_pra">COUNT-UP</th>
+		</tr>
+		<tr class="score_best">
+		<td><span class="red">BEST</span></td>
+		<td class="score_01">107.83</td>
+		<td class="score_cri">3.64</td>
+		<td class="score_pra">552</td>
+		</tr>
+		<tr class="score_avg">
+		<td>AVG</td>
+		<td class="score_01">90.14</td>
+		<td class="score_cri">3.39</td>
+		<td class="score_pra">518.50</td>
+		</tr>
+		</tbody></table><h3>PLAYER</h3>
+		<p class="noData">プレイデータがありません。</p>
+		<h2>Award &amp; Feats</h2>
+		<table class="basic" id="award">
+				<tbody><tr class="awa_lt">
+					<th>LOW TON</th>
+					<td>30</td>
+					</tr>
+				<tr class="awa_ht">
+					<th>HAT TRICK</th>
+					<td>9</td>
+					</tr>
+				<tr class="awa_wb">
+					<th>7 COUNT</th>
+					<td>2</td>
+					</tr>
+				<tr class="awa_wb">
+					<th>6 COUNT</th>
+					<td>1</td>
+					</tr>
+				<tr class="awa_wb">
+					<th>5 COUNT</th>
+					<td>1</td>
+					</tr>
+				<tr class="awa_wb">
+					<th>D-BULL</th>
+					<td>28</td>
+					</tr>
+				<tr class="awa_wb">
+					<th>S-BULL</th>
+					<td>86</td>
+					</tr>
+				</tbody></table>
+<h2>Results</h2>
+		<ul class="result">
+			<h3 class="result01">701</h3><li class="resultLi">
+					<ul class="gameList">
+						<li class="doubles">
+							<div class="globalMatch"></div><div class="crown"></div><div class="name">蛇太郎[衰退中]<div class="belong">
+													<div class="belong_country">
+													千葉県</div>
+													<div class="belong_shop">ｼﾞｮｲﾌﾟﾗｻﾞ印西店</div>
+													</div>
+												</div>
+											<div class="point">
+												103.00</div>
+										</li>
+						<li class="singles">
+							<div class="noCrown">2</div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											84.83</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="globalMatch"></div><div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											107.83</div>
+									</li>
+						<li class="doubles">
+							<div class="noCrown">2</div><div class="name">(ry<div class="belong">
+													<div class="belong_country">
+													神奈川県</div>
+													<div class="belong_shop">ピアッツァ</div>
+													</div>
+												</div>
+											<div class="point">
+												87.50</div>
+										</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<h3 class="result01">1501</h3><li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											104.75</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											87.79</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											76.94</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											78.69</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<h3 class="resultCri">STANDARD CRICKET</h3><li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="globalMatch"></div><div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											3.13</div>
+									</li>
+						<li class="doubles">
+							<div class="noCrown">2</div><div class="name">TATSUYA THE 396<div class="belong">
+													<div class="belong_country">
+													岩手県</div>
+													<div class="belong_shop">みらい夢　盛岡南店</div>
+													</div>
+												</div>
+											<div class="point">
+												3.13</div>
+										</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="globalMatch"></div><div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											3.64</div>
+									</li>
+						<li class="doubles">
+							<div class="noCrown">2</div><div class="name">- NABE★KAZU -<div class="belong">
+													<div class="belong_country">
+													千葉県</div>
+													<div class="belong_shop">快活CLUB東金</div>
+													</div>
+												</div>
+											<div class="point">
+												2.73</div>
+										</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<h3 class="resultPra">COUNT-UP</h3><li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											485</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											552</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			<h3 class="resultPra">CRICKET COUNT-UP</h3><li class="resultLi">
+					<ul class="gameList">
+						<li class="singles">
+							<div class="crown"></div><div class="name own">
+											たけを＠紫推し</div>
+										<div class="point own">
+											196</div>
+									</li>
+						</ul><!--/.gameList  -->
+				</li><!--/.resultLi  -->
+			</ul>
+	</div>
+<!-- /#yesterday --></div>
+<!-- 昨日のプレイデータ ここまで -->
+
+<!-- /#dailyData --></div>
+
+<div id="footerArea">
+	<p class="pagetop">
+		<a href="http://card.dartslive.com/t/playdata.jsp#pagetop">
+			<span class="icon"></span>Page Top
+		</a>
+	</p>
+	<div id="footer">
+		<address>
+			Copyright&nbsp;©&nbsp;DARTSLIVE Co., Ltd. All Rights Reserved.
+		</address>
+	</div>
+	<!-- /footer -->
+</div>
+<!-- /footerArea -->
+</div><!-- /#container -->
+<!-- google -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33634693-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- //google -->
+
+
+</body></html>

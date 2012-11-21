@@ -1,0 +1,264 @@
+/*-------------------------------------------------
+  * PLAY PAGE Settings *
+-------------------------------------------------*/
+.dayTitle {
+	font-size:20px;
+	font-weight:600;
+	margin:15px 0 10px 10px;
+}
+.dayTitle span.date {
+	font-size:12px;
+	color:#888888;
+	margin:0 0 0 5px;
+}
+
+#dailyData h2 {
+	font-size:16px;
+	padding:0;
+	margin:15px 0 2px 0;
+	line-height:1.0em;
+	border:none;
+	background:none;
+	color:#000000;
+}
+#dailyData h3 {
+	position:relative;
+	font-size:14px;
+	margin:0;
+	line-height:1.2;
+	padding:4px 0 3px 10px;
+	border:1px solid #5f6a78;
+	border-left:none;
+	border-right:none;
+	background: #77889d;
+	color:#ffffff;
+	box-shadow:inset 1px 1px 0 rgba(255,255,255,0.4);
+}
+#dailyData h3.resultArena span.title {
+	display:block;
+	color:#fff600;
+	font-size:12px;
+	line-height:1.1;
+}
+#dailyData h3.resultArena span.game {
+	display:block;
+	font-size:14px;
+	line-height:1.1;
+}
+
+/*--- Country&Shop -----------------------------*/
+div.belong {
+	border-left:3px solid #77889d;
+	padding:0 4px;
+	margin:5px 0 5px 3px;
+}
+div.belong div.belong_country {
+	color:#d20030;
+	font-size:9px;
+	line-height:1.0em;
+}
+div.belong div.belong_shop {
+	color:#77889d;
+	font-size:9px;
+	line-height:1.0em;
+}
+
+/*--- Shop -----------------------------*/
+ul.shopList {
+	display:block;
+	position:relative;
+	clear:both;
+	width:100%;
+	margin:0 auto;
+	padding:0;
+	background:none;
+	line-height:1.0em;
+}
+ul.shopList li.shop {
+	display:block;
+	background-position:98% 50%;
+	line-height:1.0em;
+	/* gradient */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #e8e8e8));
+	background-image:-moz-linear-gradient(top, #ffffff, #e8e8e8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#e8e8e8);zoom:1;
+}
+ul.shopList li.shop a {
+	display:block;
+	line-height:1.0em;
+	padding:10px;
+	text-decoration:none;
+	background-image:url(../../img/common/arrow_blue.png);
+	background-repeat:no-repeat;
+	background-position:98% 50%;
+	border:1px solid #dadada;
+}
+ul.shopList li.shop a img {
+	display:block;
+	float:left;
+	border:none;
+	margin:0 5px 0 0;
+	padding:0;
+}
+div.homeshop {
+	margin:0;
+	padding:10px 10px 10px 0;
+	line-height:1.0em;
+	font-size:14px;
+	font-weight:600;
+	color:#000000;
+}
+div.homeshop span.icon {
+	display:block;
+	float:left;
+	line-height:1.0;
+	background: url(../../img/cardtop/play/btn_homeshop.png) no-repeat;
+	width:55px;
+	height:19px;
+	margin-top:-3px;
+	margin-right:5px;
+}
+
+
+/*--- Score Table -----------------------------*/
+table#score th {
+	width:20%;
+	color:#ffffff;
+	text-shadow:1px 1px 3px #97a9b8;
+	font-size:12px;
+	padding:8px 0;
+	vertical-align:middle;
+	/* gradient */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #e8e8e8));
+	background-image:-moz-linear-gradient(top, #ffffff, #e8e8e8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#e8e8e8);zoom:1;
+}
+
+/* ゲームごとの背景色 */
+table#score th.score_01 {
+	border:1px solid #901025;
+	background:#fc005a;
+	/* gradient */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #fc005a),color-stop(1, #c0001f));
+	background-image:-moz-linear-gradient(top, #fc005a, #c0001f);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fc005a,endColorstr=#c0001f);zoom:1;
+}
+table#score th.score_cri {
+	border:1px solid #003cab;
+	background:#0088fc;
+	/* gradient */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #0088fc),color-stop(1, #0042c0));
+	background-image:-moz-linear-gradient(top, #0088fc, #0042c0);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#0088fc,endColorstr=#0042c0);zoom:1;
+}
+table#score th.score_pra {
+	border:1px solid #15a27a;
+	background:#52dfb5;
+	/* gradient */
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #52dfb5),color-stop(1, #18b88a));
+	background-image:-moz-linear-gradient(top, #52dfb5, #18b88a);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#52dfb5,endColorstr=#18b88a);zoom:1;
+}
+
+table#score tr.score_best td {
+	padding:9px 0;
+	font-size:16px;
+	font-weight:600;
+}
+table#score tr.score_avg td {
+	padding:6px 0;
+	background:#ededed;
+}
+
+/*--- Award Table -----------------------------*/
+table#award {}
+table#award th {
+	width:50%;
+	text-align:left;
+	color:#000000;
+	font-size:12px;
+	font-weight:normal;
+	padding:8px 5px;
+	background:#ededed;
+	border:1px solid #dadada;
+}
+/* each award */
+table#award tr.awa_lt {}
+table#award tr.awa_ht {}
+table#award tr.awa_3ab {}
+table#award tr.awa_wb {}
+
+
+/*--- Result Table -----------------------------*/
+/* ゲームごとの背景色 */
+#dailyData h3.result01 {
+	border:1px solid #9b1030;
+	background: #d20030;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultCri {
+	border:1px solid #1058a7;
+	background: #006ce4;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultPra {
+	border:1px solid #31a388;
+	background: #31dfb5;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultParty {
+	border:1px solid #ea7401;
+	background: #f77a00;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultMatch {
+	border:1px solid #9600cd;
+	background: #b500f7;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultArena {
+	border:1px solid #00a400;
+	background: #00d700;
+	border-left:none;
+	border-right:none;
+}
+#dailyData h3.resultRecom {
+	border:1px solid #a50091;
+	background: #d200c6;
+	border-left:none;
+	border-right:none;
+}
+
+div.own,
+ul.result ul.gameList li div.own,
+ul.result ul.gameList li.doubles div.own,
+ul.result ul.gameList li.trios div.own,
+ul.result ul.gameList li.gallon div.own {
+	color:#d20030;
+}
+
+/* for Retina display (iPhone 4 Android IS03..) */
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+       only screen and (min--moz-device-pixel-ratio:1.5),
+       only screen and (min-resolution:240dpi) {
+	div.homeshop span.icon {
+		background-image: url(../../img/cardtop/play/btn_homeshop_twice.png);
+		-webkit-background-size:55px 19px;
+		-moz-background-size:55px 19px;
+		background-size:55px 19px;
+		background-repeat:no-repeat;
+	}
+	ul.shopList li a {
+		background-image:url(../../img/common/arrow_blue_twice.png);
+		-webkit-background-size:12px 12px;
+		-moz-background-size:12px 12px;
+		background-size:12px 12px;
+		background-repeat:no-repeat;
+		background-position:98% 50%;
+	}
+}

@@ -1,6 +1,8 @@
 package org.shmztko.request;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -21,7 +23,15 @@ public class Requester {
 	}
 
 	public String get(String url) throws RequestException {
-		return getResponseBody(new HttpGet(url));
+		try {
+			return get(new URI(url));
+		} catch (URISyntaxException e) {
+			throw new RequestException(e);
+		}
+	}
+
+	private String get(URI uri) throws RequestException {
+		return getResponseBody(new HttpGet(uri));
 	}
 
 	private String getResponseBody(HttpUriRequest method) throws RequestException {
