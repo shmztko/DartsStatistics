@@ -69,8 +69,4 @@ public class DataBaseManager {
 			throw new ApplicationException("Failed to find records. -> " + entity.toString(), e);
 		}
 	}
-
-	public <T extends Entity> T[] get(Class<T> entity) {
-		return manager.get(entity);
-	}
 }
