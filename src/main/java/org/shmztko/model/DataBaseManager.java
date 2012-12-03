@@ -13,12 +13,25 @@ import net.java.ao.schema.UnderscoreTableNameConverter;
 
 import org.shmztko.exceptions.ApplicationException;
 
-public class DataBaseManager {
+/**
+ * <p>
+ * DataBaseへのアクセス用クラスです。<br/>
+ * {@link EntityManager} だと、DBアクセスごとにSQLExceptionをtry~catchしないといけないので、
+ * このクラスで例外をcatchしてRuntimeExecptionに変換して送出します。
+ * </p>
+ * @author ShimizuTakeo
+ */
+public final class DataBaseManager {
 
+	/** {@link EntityManager}のインスタンス */
 	private EntityManager manager;
 
-	private static DataBaseManager INSTANCE = new DataBaseManager();
+	/** このクラスの唯一のインスタンス */
+	private static final DataBaseManager INSTANCE = new DataBaseManager();
 
+	/**
+	 * このクラスがインスタンス化される時に呼び出されます。
+	 */
 	private DataBaseManager() {
 		ResourceBundle bundle = ResourceBundle.getBundle("darts-statistics");
 		manager = new EntityManager(DatabaseProvider.getInstance(
@@ -30,14 +43,21 @@ public class DataBaseManager {
 		manager.setTableNameConverter(new UnderscoreTableNameConverter(false));
 	}
 
-	public static EntityManager getEntityManager() {
-		return INSTANCE.manager;
-	}
-
+	/**
+	 * このクラスのインスタンスを取得します。
+	 * @return このクラスのインスタンス
+	 */
 	public static DataBaseManager getInstance() {
 		return INSTANCE;
 	}
 
+	/**
+	 * 指定したエンティティへ新しいオブジェクトを生成します。
+	 * @param entity レコード作成対象のエンティティクラス
+	 * @param dbParams 作成時に渡すDBのパラメータ
+	 * @param <T> 指定したエンティティのクラス
+	 * @return 作成したオブジェクト
+	 */
 	public <T extends Entity> T create(Class<T> entity, DBParam ...dbParams) {
 		try {
 			return manager.create(entity, dbParams);
@@ -46,14 +66,13 @@ public class DataBaseManager {
 		}
 	}
 
-	public void migrate(Class<? extends Entity> ... entities) {
-		try {
-			manager.migrate(entities);
-		} catch (SQLException e) {
-			throw new ApplicationException("Failed to migrate. -> " + entities.toString(), e);
-		}
-	}
-
+	/**
+	 * 指定したエンティティから、クエリ条件に一致するオブジェクトを検索します。
+	 * @param entity 検索対象のエンティティ
+	 * @param query 検索条件
+	 * @param <T> 指定したエンティティのクラス
+	 * @return 検索条件に一致したオブジェクト一覧
+	 */
 	public <T extends Entity> T[] find(Class<T> entity, Query query) {
 		try {
 			return manager.find(entity, query);
@@ -62,11 +81,57 @@ public class DataBaseManager {
 		}
 	}
 
+	/**
+	 * 指定したエンティティから、全オブジェクトを検索します。
+	 * @param entity 検索対象のエンティティ
+	 * @param <T> 指定したエンティティのクラス
+	 * @return 指定したエンティティの全オブジェクト
+	 */
 	public <T extends Entity> T[] find(Class<T> entity) {
 		try {
 			return manager.find(entity);
 		} catch (SQLException e) {
 			throw new ApplicationException("Failed to find records. -> " + entity.toString(), e);
+		}
+	}
+
+	/**
+	 * 指定したオブジェクトを削除します。
+	 * @param object 削除対象のオブジェクト
+	 * @param <T> 指定したエンティティのクラス
+	 */
+	public <T extends Entity> void delete(T ... object) {
+		try {
+			manager.delete(object);
+		} catch (SQLException e) {
+			throw new ApplicationException("Failed to delete records. -> " + object.toString(), e);
+		}
+	}
+
+	/**
+	 * 全エンティティを生成します。
+	 */
+	public void migrateAll() {
+		migrate(User.class, Statistic.class);
+	}
+
+	/**
+	 * 全エンティティ内のデータを削除します。
+	 */
+	public void deleteAll() {
+		delete(find(User.class));
+		delete(find(Statistic.class));
+	}
+
+	/**
+	 * エンティティを移行を行います。
+	 * @param entities 移行対象エンティティ
+	 */
+	private void migrate(Class<? extends Entity> ... entities) {
+		try {
+			manager.migrate(entities);
+		} catch (SQLException e) {
+			throw new ApplicationException("Failed to migrate. -> " + entities.toString(), e);
 		}
 	}
 }

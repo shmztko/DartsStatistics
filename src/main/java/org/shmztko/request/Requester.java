@@ -14,14 +14,28 @@ import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+/**
+ * HTTPリクエストを送るためのクラス
+ * @author ShimizuTakeo
+ */
 public class Requester {
 
+	/** HTTPClient */
 	private DefaultHttpClient client;
 
+	/**
+	 * このクラスのインスタンスが生成される時に呼び出されます
+	 */
 	public Requester() {
 		client = new DefaultHttpClient();
 	}
 
+	/**
+	 * 指定されたURLに対してGETリクエストを送り、レスポンスの内容を取得します
+	 * @param url 取得するページURL
+	 * @return 取得したページの内容
+	 * @throws RequestException urlが正しいフォーマットではないとき
+	 */
 	public String get(String url) throws RequestException {
 		try {
 			return get(new URI(url));
@@ -30,10 +44,22 @@ public class Requester {
 		}
 	}
 
+	/**
+	 * 指定されたURLに対してGETリクエストを送り、レスポンスの内容を取得します
+	 * @param uri 取得するページのURI
+	 * @return 取得したページの内容
+	 * @throws RequestException リクエストに失敗したとき
+	 */
 	private String get(URI uri) throws RequestException {
 		return getResponseBody(new HttpGet(uri));
 	}
 
+	/**
+	 * レスポンスの内容を取得します
+	 * @param method リクエストオブジェクト
+	 * @return レスポンスの内容
+	 * @throws RequestException リクエストに失敗したとき
+	 */
 	private String getResponseBody(HttpUriRequest method) throws RequestException {
 		HttpResponse response = null;
 		try {
@@ -51,6 +77,11 @@ public class Requester {
 		}
 	}
 
+	/**
+	 * プロキシを設定します
+	 * @param hostname プロキシサーバのホスト名
+	 * @param port プロキシサーバのポート番号
+	 */
 	public void setProxy(String hostname, int port) {
 		client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, new HttpHost(hostname, port));
 	}
