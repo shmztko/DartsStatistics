@@ -51,7 +51,8 @@ public class DatabaseManagerTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		testTarget.deleteAll();
+		testTarget.delete(Statistic.class);
+		testTarget.delete(User.class);
 	}
 
 	/**

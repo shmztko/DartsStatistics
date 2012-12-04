@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.shmztko.model.DataBaseManager;
+import org.shmztko.model.Statistic;
+import org.shmztko.model.User;
 
 /**
  * {@link Executer} に対応するテストクラスです。
@@ -31,7 +33,8 @@ public class ExecuterTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DataBaseManager.getInstance().deleteAll();
+		DataBaseManager.getInstance().delete(Statistic.class);
+		DataBaseManager.getInstance().delete(User.class);
 	}
 
 	/**

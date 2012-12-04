@@ -1,6 +1,8 @@
 package org.shmztko.model;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import net.java.ao.DBParam;
@@ -22,6 +24,14 @@ import org.shmztko.exceptions.ApplicationException;
  * @author ShimizuTakeo
  */
 public final class DataBaseManager {
+
+	/** 扱う対象となるモデルクラス一覧 */
+	private static final List<Class<? extends Entity>> MODEL_CLASSES;
+
+	static {
+		// 順序大事
+		MODEL_CLASSES = Arrays.asList(User.class, Statistic.class);
+	}
 
 	/** {@link EntityManager}のインスタンス */
 	private EntityManager manager;
@@ -96,6 +106,15 @@ public final class DataBaseManager {
 	}
 
 	/**
+	 * 指定したエンティティ内の全てのオブジェクトを削除します。
+	 * @param entity 削除対象のエンティティ
+	 * @param <T> 指定したエンティティのクラス
+	 */
+	public <T extends Entity> void delete(Class<T> entity) {
+		delete(find(entity));
+	}
+
+	/**
 	 * 指定したオブジェクトを削除します。
 	 * @param object 削除対象のオブジェクト
 	 * @param <T> 指定したエンティティのクラス
@@ -112,15 +131,9 @@ public final class DataBaseManager {
 	 * 全エンティティを生成します。
 	 */
 	public void migrateAll() {
-		migrate(User.class, Statistic.class);
-	}
-
-	/**
-	 * 全エンティティ内のデータを削除します。
-	 */
-	public void deleteAll() {
-		delete(find(User.class));
-		delete(find(Statistic.class));
+		for (Class<? extends Entity> clazz : MODEL_CLASSES) {
+			migrate(clazz);
+		}
 	}
 
 	/**
