@@ -55,7 +55,7 @@ public class DartsLiveStatRecorder {
 		Elements elements = doc.select("#yesterday .result");
 
 		if (elements.size() <= 0) {
-			throw new ApplicationException("Failed to get playdata pages");
+			return;
 		}
 
 		Element element = elements.get(0);
