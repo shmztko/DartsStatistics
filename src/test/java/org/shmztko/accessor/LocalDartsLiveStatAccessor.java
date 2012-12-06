@@ -15,6 +15,8 @@ import org.shmztko.model.User;
  */
 public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 
+	/** ローカルにあるテスト用HTML */
+	private static final File SOURCE_HTML = new File(".\\src\\test\\resources\\testhtml\\playdata.htm");
 	/**
 	 * このクラスがインスタンス化される時に呼び出されます。
 	 * @param user ページ取得対象のユーザ
@@ -27,7 +29,7 @@ public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 	public String getPlayDataPage() {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(".\\src\\test\\resources\\testhtml\\playdata.htm"))));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(SOURCE_HTML), "UTF-8"));
 			StringBuffer sb = new StringBuffer();
 			int c;
 			while ((c = br.read()) != -1) {
