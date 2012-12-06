@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.shmztko.model.DataBaseManager;
+import org.shmztko.model.FixtureLoader;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 
@@ -25,6 +26,8 @@ public class ExecuterTest {
 		System.setProperty("http.proxyPort", "8080");
 
 		 DataBaseManager.getInstance().migrateAll();
+
+		 new FixtureLoader().load(User.class);
 	}
 
 	/**
