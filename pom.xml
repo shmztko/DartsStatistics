@@ -6,19 +6,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DartsStatistics</name>
 
-<!--
-	<profiles>
-		<profile>
-			<id>development</id>
-			<properties>
-				<db.url>jdbc:mysql://localhost:3306/dartsstats</db.url>
-				<db.username>root</db.username>
-				<db.password></db.password>
-			</properties>
-		</profile>
-	</profiles>
--->
-
 	<dependencies>
 
 		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
@@ -36,18 +23,10 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.7</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -66,18 +45,26 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.javalite</groupId>
-			<artifactId>activejdbc</artifactId>
-			<version>1.4.5</version>
-		</dependency>
-
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version>
 			<scope>compile</scope>
 		</dependency>
 
-	</dependencies>
+<!--
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.7</version>
+			<scope>test</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.javalite</groupId>
+			<artifactId>activejdbc</artifactId>
+			<version>1.4.5</version>
+			<scope>complile</scope>
+		</dependency>
+-->
+	</dependencies>
 </project>
