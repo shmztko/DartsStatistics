@@ -22,9 +22,6 @@ public class ExecuterTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty("http.proxyHost", "itfproxy.itfrontier.co.jp");
-		System.setProperty("http.proxyPort", "8080");
-
 		 DataBaseManager.getInstance().migrateAll();
 
 		 new FixtureLoader().load(User.class);

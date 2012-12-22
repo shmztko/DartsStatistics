@@ -31,9 +31,6 @@ public class DartsLiveStatRecorderTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty("http.proxyHost", "itfproxy.itfrontier.co.jp");
-		System.setProperty("http.proxyPort", "8080");
-
 		 DataBaseManager.getInstance().migrateAll();
 
 		 user = new FixtureLoader().load(User.class).get("takewo");
