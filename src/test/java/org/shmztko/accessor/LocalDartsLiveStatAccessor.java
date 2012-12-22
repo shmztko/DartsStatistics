@@ -16,7 +16,8 @@ import org.shmztko.model.User;
 public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 
 	/** ローカルにあるテスト用HTML */
-	private static final File SOURCE_HTML = new File(".\\src\\test\\resources\\testhtml\\playdata.htm");
+	private static final File SOURCE_HTML = new File("./src/test/resources/testhtml/playdata.htm");
+
 	/**
 	 * このクラスがインスタンス化される時に呼び出されます。
 	 * @param user ページ取得対象のユーザ
