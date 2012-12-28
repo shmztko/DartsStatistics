@@ -5,13 +5,13 @@ import org.shmztko.model.User;
 import org.shmztko.recorder.DartsLiveStatRecorder;
 
 /**
- * コマンドラインからの実行用クラスです。
+ * 成績を記録するための、コマンドラインからの実行用クラスです。
  * @author ShimizuTakeo
  */
-public class Executer {
+public class Record {
 
 	/**
-	 * コマンドラインから実行されるメソッド
+	 * コマンドラインから実行された際に呼ばれるメソッド
 	 * @param args コマンドライン引数
 	 */
 	public static void main(String[] args) {

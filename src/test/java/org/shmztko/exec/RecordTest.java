@@ -11,10 +11,10 @@ import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 
 /**
- * {@link Executer} に対応するテストクラスです。
+ * {@link Record} に対応するテストクラスです。
  * @author ShimizuTakeo
  */
-public class ExecuterTest {
+public class RecordTest {
 
 	/**
 	 * テストクラス生成前に一度だけ実行される
@@ -57,7 +57,7 @@ public class ExecuterTest {
 	@Test
 	public void test() {
 		String[] args = {};
-		Executer.main(args);
+		Record.main(args);
 	}
 
 }
