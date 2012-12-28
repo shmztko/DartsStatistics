@@ -22,9 +22,9 @@ public class RecordTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		 DataBaseManager.getInstance().migrateAll();
+		DataBaseManager.getInstance().migrateAll();
 
-		 new FixtureLoader().load(User.class);
+		new FixtureLoader().load(User.class);
 	}
 
 	/**
