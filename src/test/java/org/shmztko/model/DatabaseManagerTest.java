@@ -1,7 +1,5 @@
 package org.shmztko.model;
 
-import java.util.Date;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -78,34 +76,5 @@ public class DatabaseManagerTest {
 		User[] result = testTarget.find(User.class);
 		assertThat(result.length, is(1));
 		assertThat(result[0].getID(), is(equalTo(user.getID())));
-	}
-
-	@Test
-	public void test_migrateTwoTimes() {
-		User user = testTarget.create(User.class);
-		user.setCardName("Test");
-		user.setEmail("test@example.com");
-		user.setLoginUrl("url");
-		user.save();
-
-		Statistic stats = testTarget.create(Statistic.class);
-		stats.setGameFormat("test");
-		stats.setGameName("test");
-		stats.setGameOrder(0);
-		stats.setNumberOfPlayers(1);
-		stats.setPlayedAt(new Date());
-		stats.setScore("100");
-		stats.setUser(user);
-		stats.save();
-		
-		testTarget.migrateAll();
-		
-		User[] userResult = testTarget.find(User.class);
-		assertThat(userResult.length, is(1));
-		assertThat(userResult[0].getID(), is(equalTo(user.getID())));
-		
-		Statistic[] statsResult = testTarget.find(Statistic.class);
-		assertThat(statsResult.length, is(1));
-		assertThat(statsResult[0].getID(), is(equalTo(stats.getID())));
 	}
 }
