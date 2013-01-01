@@ -1,5 +1,6 @@
 package org.shmztko.model;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import net.java.ao.Query;
 import net.java.ao.schema.UnderscoreFieldNameConverter;
 import net.java.ao.schema.UnderscoreTableNameConverter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.shmztko.exceptions.ApplicationException;
 
 /**
@@ -147,4 +149,62 @@ public final class DataBaseManager {
 			throw new ApplicationException("Failed to migrate. -> " + entities.toString(), e);
 		}
 	}
+
+	/**
+	 * {@link DBParamBuilder} を取得します。
+	 * @param entity 生成対象のクラス
+	 * @return {@link DBParamBuilder}
+	 */
+	public DBParamBuilder getDBParamBuilder(Class<? extends Entity> entity) {
+		return new DBParamBuilder(entity);
+	}
+
+	/**
+	 * DBParam生成用のクラスです。
+	 * @author ShimizuTakeo
+	 */
+	public class DBParamBuilder {
+		
+		/** パラメータ生成対象のエンティティクラス */
+		private Class<? extends Entity> entity;
+
+		/**
+		 * このクラスがインスタンス化される時に呼び出されます。
+		 * @param entity パラメータ生成対象のエンティティクラス
+		 */
+		private DBParamBuilder(Class<? extends Entity> entity) {
+			this.entity = entity;
+		}
+
+		/**
+		 * DBParamを生成します。
+		 * @param entity 生成対象のクラス
+		 * @param propertyName 生成対象のプロパティ名
+		 * @param value パラメータに含める値
+		 * @return 生成したDBParam
+		 */
+		public DBParam build(String propertyName, Object value) {
+			String fieldName = manager.getFieldNameConverter().getName(getGetterMethod(entity, propertyName));
+			return new DBParam(fieldName, value);
+		}
+
+		/**
+		 * 指定したのプロパティに対するGetterメソッドを取得します。
+		 * @param entity Getterメソッド取得対象のクラス
+		 * @param propertyName Getterメソッド取得対象のプロパティ名 (getName() なら name)
+		 * @return Getterメソッド
+		 */
+		private Method getGetterMethod(Class<? extends Entity> entity, String propertyName) {
+			String capitalized = StringUtils.capitalize(propertyName);
+			for (Method method : entity.getMethods()) {
+				String methodName = method.getName();
+				if (methodName.equals("get"+ capitalized) || methodName.equals("is" + capitalized)) {
+					return method;
+				}
+			}
+			throw new ApplicationException("No getter method for property -> " + propertyName);		
+		}
+		
+	}
+
 }
