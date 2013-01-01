@@ -3,7 +3,6 @@ package org.shmztko.exec;
 import java.util.logging.Logger;
 
 import net.java.ao.DBParam;
-import net.java.ao.DatabaseFunction;
 
 import org.shmztko.common.LogFactory;
 import org.shmztko.model.DataBaseManager;
