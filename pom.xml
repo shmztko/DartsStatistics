@@ -146,6 +146,12 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+
 		<!-- <dependency> <groupId>hsqldb</groupId> <artifactId>hsqldb</artifactId>
 			<version>1.8.0.7</version> <scope>test</scope> </dependency> <dependency>
 			<groupId>org.javalite</groupId> <artifactId>activejdbc</artifactId> <version>1.4.5</version>
