@@ -5,7 +5,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.shmztko.accessor.DartsLivePageAccessor;
-import org.shmztko.exceptions.ApplicationException;
 import org.shmztko.model.DataBaseManager;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;

@@ -2,19 +2,16 @@ package org.shmztko.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.ho.yaml.Yaml;
-import org.ho.yaml.exception.YamlException;
-
 import net.java.ao.Entity;
 import net.java.ao.schema.CamelCaseFieldNameConverter;
+
+import org.ho.yaml.Yaml;
+import org.ho.yaml.exception.YamlException;
 
 public class FixtureLoader {
 
