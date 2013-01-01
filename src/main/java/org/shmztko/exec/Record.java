@@ -24,6 +24,7 @@ public class Record {
 		LOG.info("Record statistics start");
 		User[] users = DataBaseManager.getInstance().find(User.class);
 		for (User user : users) {
+			LOG.info("Recording statistics for user -> " + user.getCardName());
 			new DartsLiveStatRecorder(user).record();
 		}
 		LOG.info("Record statistics end");
