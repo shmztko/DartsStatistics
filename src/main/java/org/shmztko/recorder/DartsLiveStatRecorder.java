@@ -4,7 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.shmztko.accessor.DartsLivePageAccessor;
+import org.shmztko.accessor.DartsLivePages;
+import org.shmztko.accessor.PageAccessor;
 import org.shmztko.model.DataBaseManager;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
@@ -17,7 +18,7 @@ import org.shmztko.utils.DateUtils;
 public class DartsLiveStatRecorder {
 
 	/** 成績取得元ページへのアクセス用クラス */
-	private DartsLivePageAccessor accessor;
+	private PageAccessor accessor;
 
 	/** 成績取得対象ユーザ */
 	private User user;
@@ -28,13 +29,12 @@ public class DartsLiveStatRecorder {
 	 */
 	public DartsLiveStatRecorder(User user) {
 		this.user = user;
-		this.accessor = new DartsLivePageAccessor(user);
 	}
 
 	/**
 	 * @param accessor 成績取得元ページへのアクセス用クラス
 	 */
-	public void setDartsLivePageAccessor(DartsLivePageAccessor accessor) {
+	public void setPageAccessor(PageAccessor accessor) {
 		this.accessor = accessor;
 	}
 
@@ -42,6 +42,9 @@ public class DartsLiveStatRecorder {
 	 * 成績をデータベースへ保存します。
 	 */
 	public void record() {
+		if (accessor == null) {
+			throw new IllegalArgumentException("Property 'accessor' required.");
+		}
 		recordScoreResultOfYesterday();
 	}
 
@@ -49,7 +52,7 @@ public class DartsLiveStatRecorder {
 	 * 昨日の成績を取得しデータベースへ保存します。
 	 */
 	private void recordScoreResultOfYesterday() {
-		Document doc = Jsoup.parse(accessor.getPlayDataPage());
+		Document doc = Jsoup.parse(accessor.getPage(DartsLivePages.PLAYDATA.getLocation()));
 
 		Elements elements = doc.select("#yesterday .result");
 

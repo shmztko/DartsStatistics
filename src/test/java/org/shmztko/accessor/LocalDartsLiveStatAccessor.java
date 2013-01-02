@@ -7,13 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.shmztko.model.User;
-
 /**
  * ローカルにあるHTMLファイルから、DartsLiveページの内容を取得するクラスです。
  * @author ShimizuTakeo
  */
-public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
+public class LocalDartsLiveStatAccessor implements PageAccessor {
 
 	/** ローカルにあるテスト用HTML */
 	private static final File SOURCE_HTML = new File("./src/test/resources/testhtml/playdata.htm");
@@ -22,12 +20,11 @@ public class LocalDartsLiveStatAccessor extends DartsLivePageAccessor {
 	 * このクラスがインスタンス化される時に呼び出されます。
 	 * @param user ページ取得対象のユーザ
 	 */
-	public LocalDartsLiveStatAccessor(User user) {
-		super(user);
+	public LocalDartsLiveStatAccessor() {
 	}
 
 	@Override
-	public String getPlayDataPage() {
+	public String getPage(String location) {
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(SOURCE_HTML), "UTF-8"));

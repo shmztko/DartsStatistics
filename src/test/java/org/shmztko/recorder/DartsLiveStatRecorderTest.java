@@ -31,14 +31,13 @@ public class DartsLiveStatRecorderTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		 DataBaseManager.getInstance().migrateAll();
+		DataBaseManager.getInstance().migrateAll();
 
-		 user = new FixtureLoader().load(User.class).get("takewo");
+		user = new FixtureLoader().load(User.class).get("takewo");
 
-		 testTarget = new DartsLiveStatRecorder(user);
-
-		 // ローカルのHTMLファイルを参照するように差し替える。
-		 testTarget.setDartsLivePageAccessor(new LocalDartsLiveStatAccessor(user));
+		testTarget = new DartsLiveStatRecorder(user);
+		// ローカルのHTMLファイルを参照するように差し替える。
+		testTarget.setPageAccessor(new LocalDartsLiveStatAccessor());
 	}
 
 	/**

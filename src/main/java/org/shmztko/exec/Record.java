@@ -2,6 +2,7 @@ package org.shmztko.exec;
 
 import java.util.logging.Logger;
 
+import org.shmztko.accessor.RemotePageAccessor;
 import org.shmztko.common.LogFactory;
 import org.shmztko.model.DataBaseManager;
 import org.shmztko.model.User;
@@ -25,7 +26,9 @@ public class Record {
 		User[] users = DataBaseManager.getInstance().find(User.class);
 		for (User user : users) {
 			LOG.info("Recording statistics for user -> " + user.getCardName());
-			new DartsLiveStatRecorder(user).record();
+			DartsLiveStatRecorder recorder = new DartsLiveStatRecorder(user);
+			recorder.setPageAccessor(new RemotePageAccessor(user));
+			recorder.record();
 		}
 		LOG.info("Record statistics end");
 	}
