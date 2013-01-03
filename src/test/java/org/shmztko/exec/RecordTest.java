@@ -5,8 +5,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.shmztko.model.DataBaseManager;
-import org.shmztko.model.FixtureLoader;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 
@@ -22,9 +20,11 @@ public class RecordTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DataBaseManager.getInstance().migrateAll();
-
-		new FixtureLoader().load(User.class);
+		User user = new User();
+		user.setCardName("たけを＠紫推し");
+		user.setEmail("st0098@gmail.com");
+		user.setLoginUrl("http://card.dartslive.com/t/top.jsp?i=559300205543375&n=2124119876");
+		user.saveIt();
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class RecordTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DataBaseManager.getInstance().delete(Statistic.class);
-		DataBaseManager.getInstance().delete(User.class);
+		User.deleteAll();
+		Statistic.deleteAll();
 	}
 
 	/**

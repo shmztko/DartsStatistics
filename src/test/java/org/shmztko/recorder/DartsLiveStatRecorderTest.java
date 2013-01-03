@@ -1,27 +1,23 @@
 package org.shmztko.recorder;
 
-import java.util.Arrays;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.List;
 
-import net.java.ao.Query;
-
-import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.shmztko.accessor.LocalDartsLiveStatAccessor;
-import org.shmztko.model.DataBaseManager;
-import org.shmztko.model.FixtureLoader;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 import org.shmztko.utils.DateUtils;
 
 public class DartsLiveStatRecorderTest {
 
-	private static DartsLiveStatRecorder testTarget;
+	private static DartsLiveRecorder testTarget;
 
 	private static User user;
 
@@ -31,13 +27,13 @@ public class DartsLiveStatRecorderTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DataBaseManager.getInstance().migrateAll();
+		User user = new User();
+		user.setCardName("たけを＠紫推し");
+		user.setEmail("st0098@gmail.com");
+		user.setLoginUrl("http://card.dartslive.com/t/top.jsp?i=559300205543375&n=2124119876");
+		user.saveIt();
 
-		user = new FixtureLoader().load(User.class).get("takewo");
-
-		testTarget = new DartsLiveStatRecorder(user);
-		// ローカルのHTMLファイルを参照するように差し替える。
-		testTarget.setPageAccessor(new LocalDartsLiveStatAccessor());
+		testTarget = new DartsLiveRecorder();
 	}
 
 	/**
@@ -46,8 +42,8 @@ public class DartsLiveStatRecorderTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DataBaseManager.getInstance().delete(Statistic.class);
-		DataBaseManager.getInstance().delete(User.class);
+		Statistic.deleteAll();
+		User.deleteAll();
 	}
 
 	/**
@@ -68,8 +64,9 @@ public class DartsLiveStatRecorderTest {
 
 	@Test
 	public void test_record() {
-		testTarget.record();
-		List<Statistic> stats = Arrays.asList(DataBaseManager.getInstance().find(Statistic.class, Query.select().where("user_id = ?", user.getID())));
+		testTarget.record(user);
+		
+		List<Statistic> stats = Statistic.where("user_id = ?", user.getId());
 
 		Statistic stat = stats.get(0);
 
