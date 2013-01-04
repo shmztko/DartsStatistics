@@ -5,8 +5,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.shmztko.model.DataBaseManager;
-import org.shmztko.model.FixtureLoader;
+import org.shmztko.model.DB;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 
@@ -22,9 +21,16 @@ public class RecordTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DataBaseManager.getInstance().migrateAll();
-
-		new FixtureLoader().load(User.class);
+		DB.open();
+		try {
+			User user = new User();
+			user.setCardName("たけを＠紫推し");
+			user.setEmail("st0098@gmail.com");
+			user.setLoginUrl("http://card.dartslive.com/t/top.jsp?i=559300205543375&n=2124119876");
+			user.saveIt();
+		} finally {
+			DB.close();
+		}
 	}
 
 	/**
@@ -33,8 +39,13 @@ public class RecordTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		DataBaseManager.getInstance().delete(Statistic.class);
-		DataBaseManager.getInstance().delete(User.class);
+		DB.open();
+		try {
+			Statistic.deleteAll();
+			User.deleteAll();
+		} finally {
+			DB.close();
+		}
 	}
 
 	/**
@@ -56,6 +67,9 @@ public class RecordTest {
 	/** コマンドラインから実行される処理を通して実行しエラーがないか確認します */
 	@Test
 	public void test() {
+		System.setProperty("http.proxyHost", "itfproxy.itfrontier.co.jp");
+		System.setProperty("http.proxyPort", "8080");
+
 		String[] args = {};
 		Record.main(args);
 	}

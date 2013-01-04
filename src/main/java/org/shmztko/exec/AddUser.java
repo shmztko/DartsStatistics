@@ -2,11 +2,8 @@ package org.shmztko.exec;
 
 import java.util.logging.Logger;
 
-import net.java.ao.DBParam;
-
 import org.shmztko.common.LogFactory;
-import org.shmztko.model.DataBaseManager;
-import org.shmztko.model.DataBaseManager.DBParamBuilder;
+import org.shmztko.model.DB;
 import org.shmztko.model.User;
 
 /**
@@ -35,13 +32,16 @@ public class AddUser {
 			return;
 		}
 
-		DBParamBuilder builder = DataBaseManager.getInstance().getDBParamBuilder(User.class);
-		DBParam email = builder.build("email", args[0]);
-		DBParam cardName = builder.build("cardName", args[1]);
-		DBParam loginUrl = builder.build("loginUrl", args[2]);
-
-		DataBaseManager.getInstance().create(User.class, email, cardName, loginUrl);
-
-		LOG.info("User adding end");
+		try {
+			DB.open();
+			User user = new User();
+			user.setEmail(args[0]);
+			user.setCardName(args[1]);
+			user.setLoginUrl(args[2]);
+			user.saveIt();
+		} finally {
+			DB.close();
+			LOG.info("User adding end");
+		}
 	}
 }

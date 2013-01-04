@@ -1,45 +1,57 @@
 package org.shmztko.model;
 
-import net.java.ao.Entity;
-import net.java.ao.OneToMany;
+import org.javalite.activejdbc.Model;
 
 /**
  * ユーザを表すデータモデル
  * @author ShimizuTakeo
  */
-public interface User extends Entity {
+public class User extends Model {
 
 	/**
 	 * @return カード名
 	 */
-	public String getCardName();
+	public String getCardName() {
+		return getString("card_name");
+	}
 
 	/**
 	 * @param cardName カード名
 	 */
-	public void setCardName(String cardName);
+	public void setCardName(String cardName) {
+		set("card_name", cardName);
+	}
 
 	/**
 	 * @return メールアドレス
 	 */
-	public String getEmail();
+	public String getEmail() {
+		return getString("email");
+	}
 	/**
 	 * @param email メールアドレス
 	 */
-	public void setEmail(String email);
+	public void setEmail(String email) {
+		set("email", email);
+	}
 
 	/**
 	 * @return ログインURL
 	 */
-	public String getLoginUrl();
+	public String getLoginUrl() {
+		return getString("login_url");
+	}
 	/**
 	 * @param loginUrl ログインURL
 	 */
-	public void setLoginUrl(String loginUrl);
+	public void setLoginUrl(String loginUrl) {
+		set("login_url", loginUrl);
+	}
 
 	/**
-	 * @return 成績
+	 * @param stat 成績
 	 */
-	@OneToMany
-	public Statistic[] getStatistics();
+	public void addStatistic(Statistic stat) {
+		add(stat);
+	}
 }
