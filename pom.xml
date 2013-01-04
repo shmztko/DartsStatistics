@@ -7,6 +7,30 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DartsStatistics</name>
 
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+				<db.url>jdbc:mysql://localhost:3306/dartsstat_test</db.url>
+				<db.username>dartsstat</db.username>
+				<db.password>dartsstat</db.password>
+			</properties>
+		</profile>
+		<profile>
+			<id>release</id>
+			<properties>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+				<db.url>jdbc:mysql://localhost:3306/dartsstat</db.url>
+				<db.username>dartsstat</db.username>
+				<db.password>dartsstat</db.password>
+			</properties>
+		</profile>
+	</profiles>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>c5-public-repository</id>
@@ -169,10 +193,10 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<url>jdbc:mysql://localhost:3306/dartsstat</url>
-					<username>dartsstat</username>
-					<password>dartsstat</password>
-					<driver>com.mysql.jdbc.Driver</driver>
+					<driver>${db.driver}</driver>
+					<url>${db.url}</url>
+					<username>${db.username}</username>
+					<password>${db.password}</password>
 				</configuration>
 				<executions>
 					<execution>
