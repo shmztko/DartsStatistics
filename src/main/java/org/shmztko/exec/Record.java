@@ -16,7 +16,7 @@ public class Record {
 
 	/** ロガー */
 	private static final Logger LOG = LogFactory.getLogger(Record.class);
-	
+
 	/**
 	 * コマンドラインから実行された際に呼ばれるメソッド
 	 * @param args コマンドライン引数
@@ -30,7 +30,7 @@ public class Record {
 			for (User user : users) {
 				LOG.info("Recording statistics for user -> " + user.getCardName());
 				recorder.record(user);
-			}			
+			}
 		} finally {
 			DB.close();
 			LOG.info("Record playdata end");

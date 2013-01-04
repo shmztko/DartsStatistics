@@ -1,31 +1,34 @@
 package org.shmztko.model;
 
-import java.util.ResourceBundle;
-
-import net.java.ao.EntityManager;
-
 import org.javalite.activejdbc.Base;
+import org.shmztko.utils.PropertiesUtils;
 
 /**
  * <p>
- * DataBaseへのアクセス用クラスです。<br/>
- * {@link EntityManager} だと、DBアクセスごとにSQLExceptionをtry~catchしないといけないので、
- * このクラスで例外をcatchしてRuntimeExecptionに変換して送出します。
+ * DataBaseの接続開始・終了を行うクラスです。
  * </p>
  * @author ShimizuTakeo
  */
 public final class DB {
 
+	/** プロパティ */
+	private static final PropertiesUtils PROPS = new PropertiesUtils("/darts-statistics.properties");
+
+	/**
+	 * DBとの接続を開きます。
+	 */
 	public static void open() {
-		ResourceBundle bundle = ResourceBundle.getBundle("darts-statistics");
 		Base.open(
-				bundle.getString("db.driver"),
-				bundle.getString("db.url"),
-				bundle.getString("db.username"),
-				bundle.getString("db.password")
+				PROPS.getString("db.driver"),
+				PROPS.getString("db.url"),
+				PROPS.getString("db.username"),
+				PROPS.getString("db.password")
 		);
 	}
 
+	/**
+	 * DBとの接続を閉じます。
+	 */
 	public static void close() {
 		Base.close();
 	}

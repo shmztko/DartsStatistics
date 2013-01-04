@@ -2,6 +2,7 @@ package org.shmztko.recorder;
 
 import java.util.List;
 
+import org.shmztko.accessor.PageAccessor;
 import org.shmztko.accessor.RemotePageAccessor;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
@@ -13,21 +14,31 @@ import org.shmztko.parser.DartsLiveParser;
  */
 public class DartsLiveRecorder {
 
+	/** ページアクセス用クラス */
+	private PageAccessor accessor;
+
 	/**
-	 * このクラスがインスタンス化される時に呼び出されます。
+	 * @param accessor ページアクセス用クラス
 	 */
-	public DartsLiveRecorder() {
+	public void setPageAccessor(PageAccessor accessor) {
+		this.accessor = accessor;
 	}
 
 	/**
 	 * 成績をデータベースへ保存します。
+	 * @param user 成績記録対象ユーザ
 	 */
 	public void record(User user) {
-		DartsLiveParser parser = new DartsLiveParser(new RemotePageAccessor(user));
+		if (accessor == null) {
+			accessor = new RemotePageAccessor(user);
+		}
+		DartsLiveParser parser = new DartsLiveParser(accessor);
 		List<Statistic> stats = parser.getYesterdayStats();
 		for (Statistic stat : stats) {
-			stat.setUser(user);
 			stat.saveIt();
+
+			user.addStatistic(stat);
+			user.saveIt();
 		}
 	}
 }

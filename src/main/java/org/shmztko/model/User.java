@@ -1,5 +1,7 @@
 package org.shmztko.model;
 
+import org.javalite.activejdbc.Model;
+
 /**
  * ユーザを表すデータモデル
  * @author ShimizuTakeo
@@ -10,40 +12,46 @@ public class User extends Model {
 	 * @return カード名
 	 */
 	public String getCardName() {
-		return (String)getValue("card_name");
+		return getString("card_name");
 	}
 
 	/**
 	 * @param cardName カード名
 	 */
 	public void setCardName(String cardName) {
-		setValue("card_name", cardName);
+		set("card_name", cardName);
 	}
 
 	/**
 	 * @return メールアドレス
 	 */
 	public String getEmail() {
-		return (String)getValue("email");
+		return getString("email");
 	}
 	/**
 	 * @param email メールアドレス
 	 */
 	public void setEmail(String email) {
-		setValue("email", email);
+		set("email", email);
 	}
 
 	/**
 	 * @return ログインURL
 	 */
 	public String getLoginUrl() {
-		return (String)getValue("login_url");
+		return getString("login_url");
 	}
 	/**
 	 * @param loginUrl ログインURL
 	 */
 	public void setLoginUrl(String loginUrl) {
-		setValue("login_url", loginUrl);
+		set("login_url", loginUrl);
 	}
 
+	/**
+	 * @param stat 成績
+	 */
+	public void addStatistic(Statistic stat) {
+		add(stat);
+	}
 }

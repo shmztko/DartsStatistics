@@ -11,16 +11,28 @@ import org.jsoup.select.Elements;
 import org.shmztko.accessor.DartsLivePages;
 import org.shmztko.accessor.PageAccessor;
 import org.shmztko.model.Statistic;
-
+import org.shmztko.utils.DateUtils;
+/**
+ * DartsLiveユーザページのパース用クラス
+ * @author ShimizuTakeo
+ */
 public class DartsLiveParser {
 
 	/** 成績取得元ページへのアクセス用クラス */
 	private PageAccessor accessor;
 
+	/**
+	 * このクラスがインスタンス化される時に呼び出されます。
+	 * @param accessor ページアクセス用クラス
+	 */
 	public DartsLiveParser(PageAccessor accessor) {
 		this.accessor = accessor;
 	}
 
+	/**
+	 * プログラム実行日からみて昨日の成績を取得します。
+	 * @return 昨日の成績一覧
+	 */
 	public List<Statistic> getYesterdayStats() {
 		Document doc = Jsoup.parse(accessor.getPage(DartsLivePages.PLAYDATA.getLocation()));
 
@@ -32,7 +44,7 @@ public class DartsLiveParser {
 		Element element = elements.get(0);
 		String gameName = "";
 		int gameOrder = 0;
-		
+
 		List<Statistic> result = new ArrayList<Statistic>();
 		for (Element childElement : element.children()) {
 			String className = childElement.className();
@@ -53,6 +65,7 @@ public class DartsLiveParser {
 				statistic.setGameFormat(score.parent().className());
 				statistic.setGameOrder(gameOrder++);
 				statistic.setNumberOfPlayers(players);
+				statistic.setPlayedAt(DateUtils.getYesterday());
 				statistic.setScore(score.text());
 				result.add(statistic);
 			}

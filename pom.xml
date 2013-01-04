@@ -12,7 +12,16 @@
 			<id>c5-public-repository</id>
 			<url>http://mvn.carbonfive.com/public</url>
 		</pluginRepository>
+
 	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSource Repository</name>
+			<url>http://repo.springsource.org/release</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<pluginManagement>
@@ -39,6 +48,36 @@
 										<ignore />
 									</action>
 								</pluginExecution>
+
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.javalite</groupId>
+										<artifactId>activejdbc-instrumentation</artifactId>
+										<versionRange>[1.4.1,)</versionRange>
+										<goals>
+											<goal>instrument</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+
+								<!-- db-migration-maven-plugin -->
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.carbonfive.db-support</groupId>
+										<artifactId>db-migration-maven-plugin</artifactId>
+										<versionRange>[0.9.9-m5,)</versionRange>
+										<goals>
+											<goal>migrate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -106,13 +145,27 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.javalite</groupId>
+				<artifactId>activejdbc-instrumentation</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>instrument</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<groupId>com.carbonfive.db-support</groupId>
 				<artifactId>db-migration-maven-plugin</artifactId>
 				<dependencies>
 					<dependency>
 						<groupId>mysql</groupId>
 						<artifactId>mysql-connector-java</artifactId>
-						<version>5.0.4</version>
+						<version>5.1.21</version>
 					</dependency>
 				</dependencies>
 				<configuration>
@@ -135,6 +188,9 @@
 		</plugins>
 	</build>
 
+	<!-- ================== -->
+	<!-- 依存ライブラリ設定 -->
+	<!-- ================== -->
 	<dependencies>
 
 		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
@@ -177,6 +233,7 @@
 			<groupId>org.javalite</groupId>
 			<artifactId>activejdbc</artifactId>
 			<version>1.4.1</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -190,13 +247,23 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- <dependency> <groupId>hsqldb</groupId> <artifactId>hsqldb</artifactId>
-			<version>1.8.0.7</version> <scope>test</scope> </dependency> <dependency>
-			<groupId>org.javalite</groupId> <artifactId>activejdbc</artifactId> <version>1.4.5</version>
-			<scope>complile</scope> </dependency> -->
-	</dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+			<scope>compile</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.2.0.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
 
 </project>

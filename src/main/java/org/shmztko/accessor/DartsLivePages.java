@@ -1,5 +1,9 @@
 package org.shmztko.accessor;
 
+/**
+ * DartsLiveのユーザページの場所を表す列挙型です。
+ * @author ShimizuTakeo
+ */
 public enum DartsLivePages {
 
 	/** プレイデータページ */
