@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.commons.io.IOUtils;
+
 /**
  * ローカルにあるHTMLファイルから、DartsLiveページの内容を取得するクラスです。
  * @author ShimizuTakeo
@@ -15,13 +17,6 @@ public class LocalDartsLiveStatAccessor implements PageAccessor {
 
 	/** ローカルにあるテスト用HTML */
 	private static final File SOURCE_HTML = new File("./src/test/resources/testhtml/playdata.htm");
-
-	/**
-	 * このクラスがインスタンス化される時に呼び出されます。
-	 * @param user ページ取得対象のユーザ
-	 */
-	public LocalDartsLiveStatAccessor() {
-	}
 
 	@Override
 	public String getPage(String location) {
@@ -42,12 +37,7 @@ public class LocalDartsLiveStatAccessor implements PageAccessor {
 			e.printStackTrace();
 			return null;
 		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-				}
-			}
+			IOUtils.closeQuietly(br);
 		}
 	}
 
