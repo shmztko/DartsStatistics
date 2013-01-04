@@ -1,5 +1,7 @@
 package org.shmztko.model;
 
+import java.util.List;
+
 import org.javalite.activejdbc.Model;
 
 /**
@@ -49,9 +51,16 @@ public class User extends Model {
 	}
 
 	/**
-	 * @param stat 成績
+	 * @return 成績記録
 	 */
-	public void addStatistic(Statistic stat) {
-		add(stat);
+	public List<Record> getRecords() {
+		return getAll(Record.class);
+	}
+
+	/**
+	 * @param record 成績記録
+	 */
+	public void addRecord(Record record) {
+		add(record);
 	}
 }

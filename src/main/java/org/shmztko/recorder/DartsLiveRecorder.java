@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.shmztko.accessor.PageAccessor;
 import org.shmztko.accessor.RemotePageAccessor;
+import org.shmztko.model.Award;
+import org.shmztko.model.Record;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 import org.shmztko.parser.DartsLiveParser;
+import org.shmztko.utils.DateUtils;
 
 /**
  * DartsLiveの成績を保存するクラスです。
@@ -33,12 +36,17 @@ public class DartsLiveRecorder {
 			accessor = new RemotePageAccessor(user);
 		}
 		DartsLiveParser parser = new DartsLiveParser(accessor);
+		Record record = new Record();
+		record.setPlayedAt(DateUtils.getYesterday());
+		record.saveIt();
+		
 		List<Statistic> stats = parser.getYesterdayStats();
-		for (Statistic stat : stats) {
-			stat.saveIt();
+		record.addStatistics(stats);
 
-			user.addStatistic(stat);
-			user.saveIt();
-		}
+		List<Award> awards = parser.getYesterdayAwards();
+		record.addAwards(awards);
+
+		user.addRecord(record);
+		user.saveIt();
 	}
 }
