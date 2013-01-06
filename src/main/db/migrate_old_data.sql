@@ -1,0 +1,3 @@
+INSERT INTO users (id, card_name, login_url, email, created_at) SELECT id, card_name, login_url, email, now() FROM user u;
+INSERT INTO records (user_id, played_at, created_at) SELECT user_id, played_at, now() FROM statistic GROUP BY played_at;
+INSERT INTO statistics (record_id, game_name, game_format, score, number_of_players, game_order, created_at) SELECT r.id, s.game_name, s.game_format, s.score, s.number_of_players, s.game_order, now() FROM statistic s JOIN records r ON r.user_id = s.user_id AND r.played_at = s.played_at;
