@@ -18,6 +18,7 @@
 				<db.url>jdbc:mysql://localhost:3306/dartsstat_test</db.url>
 				<db.username>dartsstat</db.username>
 				<db.password>dartsstat</db.password>
+				<skip.test>false</skip.test>
 			</properties>
 		</profile>
 		<profile>
@@ -27,6 +28,7 @@
 				<db.url>jdbc:mysql://localhost:3306/dartsstat</db.url>
 				<db.username>dartsstat</db.username>
 				<db.password>dartsstat</db.password>
+				<skip.test>true</skip.test>
 			</properties>
 		</profile>
 	</profiles>
@@ -121,6 +123,22 @@
 			</plugin>
 
 			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${skip.test}</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
@@ -159,6 +177,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -201,10 +220,10 @@
 				<executions>
 					<execution>
 						<id>dev_migrations</id>
+						<phase>validate</phase>
 						<goals>
 							<goal>migrate</goal>
 						</goals>
-						<phase>validate</phase>
 					</execution>
 				</executions>
 			</plugin>
