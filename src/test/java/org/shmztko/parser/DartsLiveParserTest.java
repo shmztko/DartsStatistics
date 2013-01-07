@@ -1,18 +1,17 @@
 package org.shmztko.parser;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.shmztko.accessor.LocalDartsLiveStatAccessor;
+import org.shmztko.model.Award;
 import org.shmztko.model.DB;
 import org.shmztko.model.Statistic;
-import org.shmztko.utils.DateUtils;
-
-import static org.junit.Assert.*;
-
-import static org.hamcrest.CoreMatchers.*;
 
 /**
  * {@link DartsLiveParser} のテストクラス
@@ -54,8 +53,19 @@ public class DartsLiveParserTest {
 		assertThat(stat.getGameFormat(), is(equalTo("singles")));
 		assertThat(stat.getGameOrder(), is(equalTo(0)));
 		assertThat(stat.getNumberOfPlayers(), is(equalTo(2)));
-		assertThat(stat.getPlayedAt(), is(equalTo(DateUtils.getYesterday())));
 		assertThat(stat.getScore(), is(equalTo("100.00")));
 	}
 
+	
+	/**
+	 * ローカルファイルから昨日のアワードをパースすることができるかを確認
+	 */
+	@Test
+	public void test_GetYesterdayAwards() {
+		testTarget = new DartsLiveParser(new LocalDartsLiveStatAccessor());
+		List<Award> awards = testTarget.getYesterdayAwards();
+		Award award = awards.get(0);
+		assertThat(award.getAwardName(), is(equalTo("LOW TON")));
+		assertThat(award.getAwardCount(), is(equalTo(30)));
+	}
 }

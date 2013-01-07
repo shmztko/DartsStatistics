@@ -5,6 +5,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.shmztko.model.Award;
 import org.shmztko.model.DB;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
@@ -42,6 +43,8 @@ public class RecordTest {
 		DB.open();
 		try {
 			Statistic.deleteAll();
+			Award.deleteAll();
+			org.shmztko.model.Record.deleteAll();
 			User.deleteAll();
 		} finally {
 			DB.close();
@@ -67,9 +70,6 @@ public class RecordTest {
 	/** コマンドラインから実行される処理を通して実行しエラーがないか確認します */
 	@Test
 	public void test() {
-		System.setProperty("http.proxyHost", "itfproxy.itfrontier.co.jp");
-		System.setProperty("http.proxyPort", "8080");
-
 		String[] args = {};
 		Record.main(args);
 	}
