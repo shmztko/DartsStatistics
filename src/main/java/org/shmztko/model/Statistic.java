@@ -1,7 +1,5 @@
 package org.shmztko.model;
 
-import java.util.Date;
-
 import org.javalite.activejdbc.Model;
 
 /**
@@ -74,19 +72,5 @@ public class Statistic extends Model {
 	 */
 	public void setGameOrder(int gameOrder) {
 		set("game_order", gameOrder);
-	}
-
-	/**
-	 * @return ゲームのプレイ日
-	 */
-	public Date getPlayedAt() {
-		return getDate("played_at");
-	}
-
-	/**
-	 * @param playedAt ゲームのプレイ日
-	 */
-	public void setPlayedAt(Date playedAt) {
-		set("played_at", playedAt);
 	}
 }

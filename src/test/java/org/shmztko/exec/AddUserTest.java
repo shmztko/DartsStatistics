@@ -3,7 +3,9 @@ package org.shmztko.exec;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.shmztko.model.Award;
 import org.shmztko.model.DB;
+import org.shmztko.model.Record;
 import org.shmztko.model.Statistic;
 import org.shmztko.model.User;
 
@@ -34,6 +36,8 @@ public class AddUserTest {
 		DB.open();
 		try {
 			Statistic.deleteAll();
+			Award.deleteAll();
+			Record.deleteAll();
 			User.deleteAll();
 		} finally {
 			DB.close();

@@ -10,8 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.shmztko.accessor.DartsLivePages;
 import org.shmztko.accessor.PageAccessor;
+import org.shmztko.model.Award;
 import org.shmztko.model.Statistic;
-import org.shmztko.utils.DateUtils;
 /**
  * DartsLiveユーザページのパース用クラス
  * @author ShimizuTakeo
@@ -27,6 +27,27 @@ public class DartsLiveParser {
 	 */
 	public DartsLiveParser(PageAccessor accessor) {
 		this.accessor = accessor;
+	}
+
+	public List<Award> getYesterdayAwards() {
+		Document doc = Jsoup.parse(accessor.getPage(DartsLivePages.PLAYDATA.getLocation()));
+
+		Elements elements = doc.select("#yesterday #award tbody");
+		if (elements.size() <= 0) {
+			return Collections.emptyList();
+		}
+		List<Award> result = new ArrayList<Award>();
+		Element element = elements.get(0);
+		for (Element childElement : element.children()) {
+			String awardName = childElement.select("th").get(0).text();
+			String awardCount = childElement.select("td").get(0).text();
+			
+			Award award = new Award();
+			award.setAwardName(awardName);
+			award.setAwardCount(Integer.parseInt(awardCount));
+			result.add(award);
+		}
+		return result;
 	}
 
 	/**
@@ -65,7 +86,6 @@ public class DartsLiveParser {
 				statistic.setGameFormat(score.parent().className());
 				statistic.setGameOrder(gameOrder++);
 				statistic.setNumberOfPlayers(players);
-				statistic.setPlayedAt(DateUtils.getYesterday());
 				statistic.setScore(score.text());
 				result.add(statistic);
 			}
