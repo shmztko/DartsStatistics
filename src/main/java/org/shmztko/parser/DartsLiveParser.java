@@ -29,6 +29,10 @@ public class DartsLiveParser {
 		this.accessor = accessor;
 	}
 
+	/**
+	 * プログラム実行日からみて昨日のアワードを取得します。
+	 * @return 昨日アワード一覧
+	 */
 	public List<Award> getYesterdayAwards() {
 		Document doc = Jsoup.parse(accessor.getPage(DartsLivePages.PLAYDATA.getLocation()));
 
@@ -41,7 +45,7 @@ public class DartsLiveParser {
 		for (Element childElement : element.children()) {
 			String awardName = childElement.select("th").get(0).text();
 			String awardCount = childElement.select("td").get(0).text();
-			
+
 			Award award = new Award();
 			award.setAwardName(awardName);
 			award.setAwardCount(Integer.parseInt(awardCount));
