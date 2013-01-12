@@ -36,17 +36,23 @@ public class DartsLiveRecorder {
 			accessor = new RemotePageAccessor(user);
 		}
 		DartsLiveParser parser = new DartsLiveParser(accessor);
-		Record record = new Record();
-		record.setPlayedAt(DateUtils.getYesterday());
-		record.saveIt();
-		
+
 		List<Statistic> stats = parser.getYesterdayStats();
-		record.addStatistics(stats);
-
 		List<Award> awards = parser.getYesterdayAwards();
-		record.addAwards(awards);
 
-		user.addRecord(record);
-		user.saveIt();
+		if (stats.isEmpty() && awards.isEmpty()) {
+			return;
+		} else {
+			Record record = new Record();
+			record.setPlayedAt(DateUtils.getYesterday());
+			// MEMO:一度DBへ保存した状態からでないと、関連付いたレコードを追加できないため、先にsaveする。
+			record.saveIt();
+
+			record.addStatistics(stats);
+			record.addAwards(awards);
+	
+			user.addRecord(record);
+			user.saveIt();			
+		}
 	}
 }

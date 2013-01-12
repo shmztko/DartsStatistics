@@ -74,7 +74,7 @@ public class DartsLiveStatRecorderTest {
 			testTarget.setPageAccessor(new LocalDartsLiveStatAccessor());
 			testTarget.record(user);
 
-			List<Record> records = user.getAll(Record.class);
+			List<Record> records = user.getRecords();
 
 			Record record = records.get(0);
 			Statistic stat = record.getStatistics().get(0);
