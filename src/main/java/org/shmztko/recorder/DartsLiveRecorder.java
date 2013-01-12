@@ -1,9 +1,11 @@
 package org.shmztko.recorder;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.shmztko.accessor.PageAccessor;
 import org.shmztko.accessor.RemotePageAccessor;
+import org.shmztko.common.LogFactory;
 import org.shmztko.model.Award;
 import org.shmztko.model.Record;
 import org.shmztko.model.Statistic;
@@ -17,6 +19,9 @@ import org.shmztko.utils.DateUtils;
  */
 public class DartsLiveRecorder {
 
+	/** ロガー */
+	private static final Logger LOG = LogFactory.getLogger(DartsLiveRecorder.class);
+	
 	/** ページアクセス用クラス */
 	private PageAccessor accessor;
 
@@ -41,8 +46,14 @@ public class DartsLiveRecorder {
 		List<Award> awards = parser.getYesterdayAwards();
 
 		if (stats.isEmpty() && awards.isEmpty()) {
+			LOG.info("No Statistcs or Awards to record.");
 			return;
+
 		} else {
+			LOG.info("Found statistics or awards to record.");
+			LOG.info("Statistics ¥t-> " + stats.size());
+			LOG.info("Awards ¥t->" + awards.size());
+
 			Record record = new Record();
 			record.setPlayedAt(DateUtils.getYesterday());
 			// MEMO:一度DBへ保存した状態からでないと、関連付いたレコードを追加できないため、先にsaveする。
@@ -50,7 +61,7 @@ public class DartsLiveRecorder {
 
 			record.addStatistics(stats);
 			record.addAwards(awards);
-	
+
 			user.addRecord(record);
 			user.saveIt();			
 		}
